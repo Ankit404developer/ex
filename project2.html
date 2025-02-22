@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Petrol Scam Detector</title>
+    <title>Automatic Street Light</title>
 
     <link rel="stylesheet" href="project2.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
@@ -38,7 +38,7 @@
                     </svg>
                 </div>
             </button>
-            <h1>Petrol Scam Detector</h1>
+            <h1>Atomatic Street Light</h1>
         </div>
     </header>
 
@@ -68,26 +68,30 @@
             <!-- Introduction Section -->
             <section id="introduction" class="project-section animate-on-scroll">
                 <h2>Introduction</h2>
-                <p>The Petrol Scam Detector is designed to prevent fraudulent activities at petrol stations by accurately measuring the amount of petrol dispensed. This system ensures that customers receive the exact amount of petrol they pay for, thereby preventing scams and ensuring transparency.</p>
+                <p>An automatic street light system using DIAC and TRIAC is an efficient lighting solution designed to automatically control streetlights based on ambient light levels. This system eliminates the need for manual switching, ensuring energy savings and improved functionality.
+
+                    The circuit operates on 220V AC and utilizes a light-dependent resistor (LDR) to detect changes in natural light. When the surrounding light intensity drops (e.g., at dusk), the LDR triggers the circuit, activating the DIAC-TRIAC combination to switch on the streetlight. At dawn, when light levels increase, the system automatically turns off the lights, conserving energy.
+                    
+                    The DIAC (Diode for Alternating Current) and TRIAC (Triode for Alternating Current) components play a key role in controlling the AC power to the streetlight, ensuring smooth and efficient switching. This system is widely used in urban lighting, highways, and smart city applications, offering a cost-effective and automated street lighting solution.</p>
             </section>
 
             <!-- Working Principle Section -->
             <section id="working-principle" class="project-section animate-on-scroll">
                 <h2>Working Principle</h2>
-                <p>The system operates using a fluid flow meter to measure the amount of petrol dispensed. The flow meter sends signals to the Arduino UNO, which processes the data and displays the amount of petrol dispensed on an LCD display with an I2C module. The key components and steps involved are:</p>
+                <p>The system works by detecting ambient light levels using an LDR (Light Dependent Resistor) and controlling a DIAC-TRIAC circuit to switch the streetlight on or off automatically. During the day, the LDR has low resistance, preventing the TRIAC from turning on the light. At night, when light levels drop, the LDR’s resistance increases, triggering a voltage change in the circuit. This activates the DIAC, which provides a pulse to the TRIAC, allowing AC power to flow and turning on the streetlight. In the morning, as light increases, the LDR’s resistance decreases, stopping the DIAC from triggering the TRIAC, which turns off the streetlight. This system enables automatic operation and energy efficiency without manual control. The components are:</p>
                 <ul>
-                    <li><strong>Fluid Flow Meter:</strong> Measures the flow rate of petrol and sends signals to the Arduino UNO.</li>
-                    <li><strong>Arduino UNO:</strong> Processes the signals from the flow meter and calculates the amount of petrol dispensed.</li>
-                    <li><strong>LCD Display with I2C Module:</strong> Displays the amount of petrol dispensed in real-time.</li>
+                    <li><strong>LDR (Light Dependent Resistor):</strong>Senses ambient light levels. It has low resistance in daylight (keeping the light off) and high resistance at night (activating the circuit).</li>
+                    <li><strong>Resistors & Capacitors</strong> Form a voltage divider circuit to regulate the triggering voltage for the DIAC.</li>
+                    <li><strong>DIAC (Diode for Alternating Current):</strong> Acts as a triggering device for the TRIAC, allowing it to switch on the AC load.</li>
+                    <li><strong>TRIAC (Triode for Alternating Current):</strong>  Functions as an electronic switch, controlling 220V AC power to turn the streetlight on or off.</li>
+                    <li><strong>Streetlight (AC Lamp):</strong> The final load that is switched on/off automatically based on light levels.</li>
                 </ul>
                 <div class="image-gallery">
                     <img src="circuit_image (1)_processed.jpg" alt="Petrol Scam Detector" class="responsive-image">
                 </div>
                 <p>The system operates as follows:</p>
                 <ol>
-                    <li>The fluid flow meter measures the flow rate of petrol as it is dispensed.</li>
-                    <li>The flow meter sends signals to the Arduino UNO, which processes the data and calculates the amount of petrol dispensed.</li>
-                    <li>The calculated amount is displayed on the LCD display in real-time, allowing customers to verify the amount of petrol they receive.</li>
+                    <li>The Automatic Street Light System using DIAC and TRIAC (220V) is a smart lighting solution that switches streetlights on and off based on ambient light levels. It uses an LDR to detect daylight and darkness, a DIAC-TRIAC circuit to control AC power, and passive components like resistors and capacitors for voltage regulation. During nighttime, the LDR triggers the DIAC, which activates the TRIAC, turning on the streetlight. At dawn, the LDR’s resistance decreases, stopping the DIAC from triggering the TRIAC, switching the light off. This system ensures automatic operation, energy efficiency, and reduced manual intervention for street lighting.</li>
                 </ol>
             </section>
 
@@ -95,21 +99,20 @@
             <section id="components-used" class="project-section animate-on-scroll">
                 <h2>Components Used</h2>
                 <ul>
-                    <li><strong>Fluid Flow Meter:</strong> Measures the flow rate of petrol.</li>
-                    <li><strong>Arduino UNO:</strong> Microcontroller used to process the signals from the flow meter and calculate the amount of petrol dispensed.</li>
-                    <li><strong>LCD Display with I2C Module:</strong> Displays the amount of petrol dispensed in real-time.</li>
-                    <li><strong>Power Supply:</strong> Provides the necessary power to the components.</li>
-                    <li><strong>Connecting Wires:</strong> Used to connect the components together.</li>
+                    <li><strong>LDR (Light Dependent Resistor):</strong>Senses ambient light levels. It has low resistance in daylight (keeping the light off) and high resistance at night (activating the circuit).</li>
+                    <li><strong>Resistors & Capacitors</strong> Form a voltage divider circuit to regulate the triggering voltage for the DIAC.</li>
+                    <li><strong>DIAC (Diode for Alternating Current):</strong> Acts as a triggering device for the TRIAC, allowing it to switch on the AC load.</li>
+                    <li><strong>TRIAC (Triode for Alternating Current):</strong>  Functions as an electronic switch, controlling 220V AC power to turn the streetlight on or off.</li>
+                    <li><strong>Streetlight (AC Lamp):</strong> The final load that is switched on/off automatically based on light levels.</li>
                 </ul>
-            </section>
 
             <!-- Applications Section -->
             <section id="applications" class="project-section animate-on-scroll">
                 <h2>Applications</h2>
                 <ul>
-                    <li><strong>Petrol Stations:</strong> Ensures that customers receive the exact amount of petrol they pay for, preventing fraudulent activities.</li>
-                    <li><strong>Fuel Dispensers:</strong> Can be integrated into fuel dispensers to provide accurate measurements of fuel dispensed.</li>
-                    <li><strong>Quality Control:</strong> Ensures the accuracy and reliability of fuel dispensing systems.</li>
+                    <li><strong>Street and Highway Lighting:</strong>  Automatically controls streetlights, reducing energy consumption and improving road safety.</li>
+                    <li><strong>Garden and Pathway Lighting:</strong> Used in residential areas, parks, and pathways to provide automatic illumination at night.</li>
+                    <li><strong>Industrial and Commercial Lighting:</strong> Applied in factories, warehouses, and parking lots for efficient lighting management.</li>
                 </ul>
             </section>
 
@@ -117,7 +120,7 @@
             <section id="future-enhancements" class="project-section animate-on-scroll">
                 <h2>Future Enhancements</h2>
                 <ul>
-                    <li><strong>IoT Integration:</strong> Integrate the system with IoT capabilities to provide real-time data to a central monitoring system, allowing for remote monitoring and control.</li>
+                    <li><strong>Integration with IoT and Smart Sensors:</strong> Integrate the system with IoT capabilities to provide real-time data to a central monitoring system, allowing for remote monitoring and control.</li>
                     <li><strong>Mobile App Development:</strong> Develop a mobile app for real-time monitoring and control of the system, providing alerts and notifications to users.</li>
                     <li><strong>Enhanced Sensor Accuracy:</strong> Use advanced sensors with higher accuracy and sensitivity for improved detection capabilities.</li>
                     <li><strong>Battery Backup:</strong> Add a battery backup to ensure the system remains operational during power outages.</li>
@@ -132,7 +135,7 @@
     <!-- Footer Section -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Saraswati Puja Exhibition Team</p>
+            <p>&copy; 2025  Exhibition Team</p>
 
             <div class="toggle-container">
                 <input type="checkbox" id="theme-toggle" class="toggle-checkbox">
