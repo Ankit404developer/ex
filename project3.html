@@ -39,7 +39,7 @@
                     </svg>
                 </div>
             </button>
-            <h1>Smart Attendance Tracker</h1>
+            <h1>RADAR</h1>
         </div>
     </header>
 
@@ -69,94 +69,43 @@
             <!-- Introduction Section -->
             <section id="introduction" class="project-section animate-on-scroll">
                 <h2>Introduction</h2>
-                <p>The Smart Attendance Tracker is an advanced system that automates the process of tracking attendance using facial recognition technology. This system is designed to enhance the efficiency and accuracy of attendance management in educational institutions, workplaces, and other organizations.</p>
+                <p>A radar system using ESP32 and an OLED display is a compact and efficient setup for detecting objects and measuring distances. The ESP32 microcontroller processes signals from an ultrasonic or microwave radar sensor and displays real-time data on an OLED screen. The system scans the surroundings, detects obstacles, and shows the distance and position of objects. This setup is used in security systems, robotics, automotive applications, and smart monitoring systems, providing a low-power, cost-effective solution for object detection and tracking.</p>
             </section>
 
             <!-- Working Principle Section -->
             <section id="working-principle" class="project-section animate-on-scroll">
                 <h2>Working Principle</h2>
-                <p>The Smart Attendance Tracker operates using a combination of computer vision and machine learning techniques to recognize and verify faces. The system captures images of individuals, processes the images to extract facial features, and matches the features against a pre-registered database to mark attendance. The key components and steps involved are:</p>
+                <p>The system works by using an ultrasonic or microwave radar sensor to detect objects and measure distances. The ESP32 microcontroller processes the sensor data and sends the output to an OLED display for real-time visualization. The radar sensor emits signals, which reflect off objects and return to the sensor. The time taken for the signal to return is used to calculate the distance. The ESP32 processes this data and updates the OLED display with the detected object's distance and position. This system enables real-time object detection and tracking for various applications.
+
+
+
+
+
+
+
+ The components are:                </p>
                 <ul>
-                    <li><strong>Image Capture:</strong> The system uses a camera to capture images of individuals as they enter the premises. The camera is strategically placed to ensure clear and unobstructed views of faces.</li>
-                    <li><strong>Face Detection:</strong> The captured images are processed using computer vision algorithms to detect faces. The system identifies the location of faces in the images and extracts the relevant facial features.</li>
-                    <li><strong>Feature Extraction:</strong> The system uses machine learning models to extract unique facial features from the detected faces. These features are used to create a digital representation of each face.</li>
-                    <li><strong>Face Recognition:</strong> The extracted features are compared against a pre-registered database of faces to identify individuals. The system uses advanced matching algorithms to ensure high accuracy and reliability.</li>
-                    <li><strong>Attendance Marking:</strong> Once a face is recognized, the system marks the attendance of the individual in a digital attendance register. The attendance data is stored securely and can be accessed for reporting and analysis.</li>
+                    <li><strong>ESP32 Microcontroller:</strong> Acts as the brain of the system, processing data from the radar sensor and sending output to the OLED display. It handles signal processing, calculations, and communication..</li>
+                    <li><strong>Radar Sensor (Ultrasonic/Microwave):</strong>  Emits signals (ultrasonic or RF waves) that reflect off objects and return to the sensor. It calculates the time taken for the signal to return and determines the object's distance.</li>
+                    <li><strong>OLED Display (0.96”/1.3” SSD1306):</strong>  Displays real-time radar data, including object position and distance. It provides a visual representation of detected obstacles.</li>
+                    <li><strong>Servo Motor :</strong>  Rotates the radar sensor to scan a larger area, improving object detection coverage.
+
+                        .</li>
+                    <li><strong>Power Supply (Battery/USB 5V) :</strong> Provides power to the ESP32 and other components for continuous operation.
+
+                    </li>
                 </ul>
                 <div class="image-gallery">
-                    <img src="project3_2.png" alt="attendance_excel" class="responsive-image">
+                    <img src="hi.jpg" alt="circuit_diagram" class="responsive-image">
                 </div>
-                <p>The system operates as follows:</p>
+                <p><strong>The system operates as follows:</strong></p><strong></strong>
                 <ol>
-                    <li>The camera captures images of individuals as they enter the premises.</li>
-                    <li>The system processes the images to detect faces and extract facial features.</li>
-                    <li>The extracted features are compared against a pre-registered database to identify individuals.</li>
-                    <li>Once a face is recognized, the system marks the attendance of the individual in a digital attendance register.</li>
-                    <li>The attendance data is stored securely and can be accessed for reporting and analysis.</li>
+                    <li>The radar system using esp32 and an oled display is designed for real-time object detection and distance measurement. it works by using a radar sensor ultrasonic or microwave to emit signals, which bounce off objects and return to the sensor. the esp32 microcontroller processes this data and calculates the distance of the detected object. the results are then displayed on an oled screen, providing a visual representation of object position and distance. this system can be enhanced by adding a servo motor to rotate the sensor, allowing for a wider scanning range. it operates on a 5v power supply and can be integrated into security systems, robotics, and automation projects. with its low power consumption and wireless capabilities, it offers a compact, efficient, and cost-effective solution for smart radar applications.</li>
                 </ol>
-                <h3>Code for Face Registration</h3>
+
                 <div class="code-box">
-                    <pre id="python-code1" style="max-height: 200px; overflow: hidden;">
-<code class="language-python">
-# filepath: /c:/Users/Md.zamal/OneDrive/Desktop/face_recognition_project-main/add_faces.py
-import cv2
-import pickle
-import numpy as np
-import os
-
-video = cv2.VideoCapture(0)
-facedetect = cv2.CascadeClassifier('data/haarcascade_frontalface_default.xml')
-
-faces_data = []
-i = 0
-name = input("Enter Your Name: ")
-
-while True:
-    ret, frame = video.read()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = facedetect.detectMultiScale(gray, 1.3, 5)
-    for (x, y, w, h) in faces:
-        crop_img = frame[y:y+h, x:x+w, :]
-        resized_img = cv2.resize(crop_img, (50, 50))
-        if len(faces_data) <= 100 and i % 10 == 0:
-            faces_data.append(resized_img)
-        i += 1
-        cv2.putText(frame, str(len(faces_data)), (50, 50), cv2.FONT_HERSHEY_COMPLEX, 1, (50, 50, 255), 1)
-        cv2.rectangle(frame, (x, y), (x+w, y+h), (50, 50, 255), 1)
-    cv2.imshow("Frame", frame)
-    k = cv2.waitKey(1)
-    if k == ord('q') or len(faces_data) == 100:
-        break
-video.release()
-cv2.destroyAllWindows()
-
-faces_data = np.asarray(faces_data)
-faces_data = faces_data.reshape(100, -1)
-
-# Paths to the data files
-names_path = 'C:/Users/Md.zamal/OneDrive/Desktop/face_recognition_project-main/data/names.pkl'
-faces_path = 'C:/Users/Md.zamal/OneDrive/Desktop/face_recognition_project-main/data/faces.pkl'
-
-# Clear existing data before adding new entries
-if os.path.isfile(names_path):
-    os.remove(names_path)
-if os.path.isfile(faces_path):
-    os.remove(faces_path)
-
-names = [name] * 100
-with open(names_path, 'wb') as f:
-    pickle.dump(names, f)
-
-with open(faces_path, 'wb') as f:
-    pickle.dump(faces_data, f)
-</code>
-                    </pre>
-                    <button id="read-more-btn1" class="btn btn-primary mt-3">Read More</button>
-                </div>
-                <h3>Code for Face Recognition and Attendance Marking</h3>
-                <div class="code-box">
-                    <pre id="python-code2" style="max-height: 200px; overflow: hidden;">
-<code class="language-python">
+                    <pre id="c++-code1" style="max-height: 200px; overflow: hidden;">
+<code class="language-c++">
 # filepath: /c:/Users/Md.zamal/OneDrive/Desktop/face_recognition_project-main/test.py
 from sklearn.neighbors import KNeighborsClassifier
 import cv2
@@ -278,11 +227,15 @@ cv2.destroyAllWindows()
             <section id="components-used" class="project-section animate-on-scroll">
                 <h2>Components Used</h2>
                 <ul>
-                    <li><strong>Camera:</strong> Captures images of individuals for facial recognition.</li>
-                    <li><strong>Computer Vision Algorithms:</strong> Detects faces in the captured images and extracts facial features.</li>
-                    <li><strong>Machine Learning Models:</strong> Extracts unique facial features and matches them against a pre-registered database.</li>
-                    <li><strong>Database:</strong> Stores the pre-registered faces and attendance data securely.</li>
-                    <li><strong>Software Interface:</strong> Provides a user-friendly interface for managing attendance data and generating reports.</li>
+                    <li><strong>ESP32 Microcontroller:</strong> Acts as the brain of the system, processing data from the radar sensor and sending output to the OLED display. It handles signal processing, calculations, and communication..</li>
+                    <li><strong>Radar Sensor (Ultrasonic/Microwave):</strong>  Emits signals (ultrasonic or RF waves) that reflect off objects and return to the sensor. It calculates the time taken for the signal to return and determines the object's distance.</li>
+                    <li><strong>OLED Display (0.96”/1.3” SSD1306):</strong>  Displays real-time radar data, including object position and distance. It provides a visual representation of detected obstacles.</li>
+                    <li><strong>Servo Motor :</strong>  Rotates the radar sensor to scan a larger area, improving object detection coverage.
+
+                        .</li>
+                    <li><strong>Power Supply (Battery/USB 5V) :</strong> Provides power to the ESP32 and other components for continuous operation.
+
+                    </li>
                 </ul>
             </section>
 
@@ -290,11 +243,18 @@ cv2.destroyAllWindows()
             <section id="applications" class="project-section animate-on-scroll">
                 <h2>Applications</h2>
                 <ul>
-                    <li><strong>Educational Institutions:</strong> Automates attendance tracking in schools, colleges, and universities, ensuring accurate and efficient attendance management.</li>
-                    <li><strong>Workplaces:</strong> Enhances attendance tracking in offices and workplaces, reducing manual effort and improving accuracy.</li>
-                    <li><strong>Event Management:</strong> Streamlines attendance tracking at conferences, seminars, and other events, providing real-time attendance data.</li>
-                    <li><strong>Security and Access Control:</strong> Integrates with security systems to provide secure access control based on facial recognition.</li>
-                    <li><strong>Healthcare Facilities:</strong> Tracks attendance of staff and patients in healthcare facilities, ensuring efficient management and compliance.</li>
+                    <li><strong>Object detection and tracking in security systems:</strong>  The radar system can be used for intrusion detection in restricted areas. It continuously scans for movement and triggers alerts when an object or person is detected, enhancing security and surveillance</li>
+                    <li><strong>Obstacle avoidance in robotics:</strong>  Robots equipped with this radar system can detect obstacles in real time and adjust their path accordingly. This is useful for autonomous robots, drones, and industrial automation, improving navigation and efficiency.</li>
+                    <li><strong>Vehicle distance measurement in automotive applications :</strong> The system can measure the distance between vehicles, helping in collision avoidance and parking assistance. It enhances safety in smart vehicles by providing real-time distance alerts to drivers or autonomous driving systems.
+
+
+
+
+
+
+
+                    </li>
+                   
                 </ul>
             </section>
 
@@ -302,11 +262,10 @@ cv2.destroyAllWindows()
             <section id="future-enhancements" class="project-section animate-on-scroll">
                 <h2>Future Enhancements</h2>
                 <ul>
-                    <li><strong>Integration with Mobile Apps:</strong> Develop mobile apps for real-time attendance tracking and notifications, allowing users to access attendance data on the go.</li>
-                    <li><strong>Advanced Analytics:</strong> Implement advanced analytics and machine learning algorithms to analyze attendance patterns and provide insights for decision-making.</li>
-                    <li><strong>Cloud Integration:</strong> Integrate the system with cloud platforms to provide scalable and secure storage of attendance data.</li>
-                    <li><strong>Multi-Camera Support:</strong> Add support for multiple cameras to cover larger areas and improve the accuracy of attendance tracking.</li>
-                    <li><strong>Enhanced Security Features:</strong> Implement advanced security features to protect attendance data and ensure compliance with data privacy regulations.</li>
+                    <li><strong>Integration with Mobile Apps:</strong> Develop mobile apps for better results</li>
+                    <li><strong>Advanced Analytics:</strong> Implement advanced analytics and machine learning algorithms to analyze this and provide insights for decision-making.</li>
+                    <li><strong>Cloud Integration:</strong> Integrate the system with cloud platforms to provide scalable and secure data.</li>
+
                 </ul>
             </section>
         </div>
@@ -318,7 +277,7 @@ cv2.destroyAllWindows()
     <!-- Footer Section -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Saraswati Puja Exhibition Team</p>
+            <p>&copy; 2025  Exhibition Team</p>
 
             <div class="toggle-container">
                 <input type="checkbox" id="theme-toggle" class="toggle-checkbox">
